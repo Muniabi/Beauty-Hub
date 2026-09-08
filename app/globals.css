@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+@source "./**/*.{ts,tsx}";
+@source "../components/**/*.{ts,tsx}";
+@source "../lib/**/*.{ts,tsx}";
+
+/* U1 tokens — docs/ui/01-ui-foundation.md. Light theme only. */
+:root {
+  --color-bg: #f4f1eb;
+  --color-surface: #fffcf8;
+  --color-surface-muted: #ebe6dc;
+  --color-text: #1c1917;
+  --color-text-muted: #6b635b;
+  --color-accent: #0f5c56;
+  --color-accent-text: #f7f4ee;
+  --color-accent-subtle: #d5e8e5;
+  --color-border: #d9d2c8;
+  --color-border-strong: #b7afa4;
+  --color-overlay: #1c191766;
+
+  --color-success: #1f7a4d;
+  --color-success-bg: #e5f3eb;
+  --color-warning: #a16207;
+  --color-warning-bg: #f8eed9;
+  --color-danger: #b42318;
+  --color-danger-bg: #fcebea;
+  --color-focus: #0f5c56;
+
+  --type-display-size: 28px;
+  --type-display-line: 34px;
+  --type-display-weight: 700;
+  --type-display-tracking: -0.02em;
+
+  --type-display-lg-size: 36px;
+  --type-display-lg-line: 42px;
+  --type-display-lg-weight: 700;
+  --type-display-lg-tracking: -0.02em;
+
+  --type-title-size: 20px;
+  --type-title-line: 26px;
+  --type-title-weight: 600;
+  --type-title-tracking: -0.01em;
+
+  --type-title-lg-size: 24px;
+  --type-title-lg-line: 30px;
+  --type-title-lg-weight: 600;
+  --type-title-lg-tracking: -0.01em;
+
+  --type-card-title-size: 16px;
+  --type-card-title-line: 22px;
+  --type-card-title-weight: 600;
+
+  --type-accent-meta-size: 16px;
+  --type-accent-meta-line: 22px;
+  --type-accent-meta-weight: 700;
+
+  --type-body-size: 15px;
+  --type-body-line: 22px;
+  --type-body-weight: 400;
+
+  --type-body-strong-size: 15px;
+  --type-body-strong-line: 22px;
+  --type-body-strong-weight: 600;
+
+  --type-caption-size: 13px;
+  --type-caption-line: 18px;
+  --type-caption-weight: 500;
+
+  --type-badge-size: 12px;
+  --type-badge-line: 16px;
+  --type-badge-weight: 600;
+  --type-badge-tracking: 0.02em;
+
+  --type-button-size: 16px;
+  --type-button-line: 20px;
+  --type-button-weight: 600;
+
+  --type-tab-size: 11px;
+  --type-tab-line: 14px;
+  --type-tab-weight: 500;
+
+  --type-nav-size: 15px;
+  --type-nav-line: 20px;
+  --type-nav-weight: 500;
+
+  --radius-badge: 6px;
+  --radius-control: 10px;
+  --radius-card: 10px;
+  --radius-sheet: 16px;
+  --radius-avatar: 8px;
+
+  --background: var(--color-bg);
+  --foreground: var(--color-text);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-text);
+  --popover: var(--color-surface);
+  --popover-foreground: var(--color-text);
+  --primary: var(--color-accent);
+  --primary-foreground: var(--color-accent-text);
+  --secondary: var(--color-surface-muted);
+  --secondary-foreground: var(--color-text);
+  --muted: var(--color-surface-muted);
+  --muted-foreground: var(--color-text-muted);
+  --accent: var(--color-accent-subtle);
+  --accent-foreground: var(--color-accent);
+  --destructive: var(--color-danger);
+  --border: var(--color-border);
+  --input: var(--color-border);
+  --ring: var(--color-focus);
+  --radius: 10px;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-surface: var(--card);
+  --color-surface-muted: var(--muted);
+  --color-success: var(--color-success);
+  --color-success-bg: var(--color-success-bg);
+  --color-warning: var(--color-warning);
+  --color-warning-bg: var(--color-warning-bg);
+  --color-danger: var(--color-danger);
+  --color-danger-bg: var(--color-danger-bg);
+  --font-sans: var(--font-manrope), Inter, ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: var(--radius-badge);
+  --radius-md: var(--radius-control);
+  --radius-lg: var(--radius-card);
+  --radius-xl: var(--radius-sheet);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-manrope), Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+html.telegram-mini-app {
+  padding-top: var(--tg-safe-area-inset-top, env(safe-area-inset-top, 0px));
+}
