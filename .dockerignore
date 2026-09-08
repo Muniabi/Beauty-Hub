@@ -1,0 +1,12 @@
+node_modules
+.next
+.git
+.env
+.env.*
+uploads
+coverage
+.cursor
+.vscode
+.idea
+npm-debug.log*
+*.pem

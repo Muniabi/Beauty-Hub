@@ -1,0 +1,11 @@
+{
+	email {$ACME_EMAIL}
+}
+
+{$DOMAIN:beautyrostov.mooo.com} {
+	encode gzip
+	request_body {
+		max_size 10MB
+	}
+	reverse_proxy app:3000
+}
