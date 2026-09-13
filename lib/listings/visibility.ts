@@ -57,6 +57,19 @@ export function isPubliclyVisible(input: {
   return true;
 }
 
+export function displayListingStatus(input: {
+  status: ListingStatus;
+  type: ListingType;
+  expiresAt: Date | null;
+  eventStartsAt?: Date | null;
+  now?: Date;
+}): ListingStatus {
+  if (isExpiredForViewer(input)) {
+    return "expired";
+  }
+  return input.status;
+}
+
 export function isExpiredForViewer(input: {
   status: ListingStatus;
   type: ListingType;

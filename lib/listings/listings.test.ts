@@ -4,6 +4,7 @@ import { assertClientCannotSetStatus, nextStatusAfterSave } from "./lifecycle";
 import { isValidForPending, listingWriteSchema } from "./schemas";
 import {
   assertOwner,
+  displayListingStatus,
   guestSeesUnpublishedAsMissing,
   isExpiredForViewer,
   isListingId,
@@ -184,6 +185,15 @@ describe("details states", () => {
         now,
       }),
     ).toBe(true);
+    expect(
+      displayListingStatus({
+        status: "published",
+        type: "event",
+        expiresAt: null,
+        eventStartsAt: past,
+        now,
+      }),
+    ).toBe("expired");
   });
 
   it("treats an invalid listing id as missing", () => {

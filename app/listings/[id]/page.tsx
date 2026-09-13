@@ -104,7 +104,9 @@ export default async function ListingDetailsPage({
           ) : null}
           {expired ? (
             <p className="mb-4 text-[15px] text-[var(--color-danger)]">
-              Объявление неактуально.
+              {listing.type === "event"
+                ? "Мероприятие уже прошло, поэтому его нет в каталоге и поиске."
+                : "Объявление неактуально."}
             </p>
           ) : null}
           <p className="text-[13px] font-semibold tracking-wide text-[var(--color-text-muted)]">

@@ -24,7 +24,7 @@ export default async function LoginPage({
   return (
     <main className="mx-auto flex min-h-svh w-full max-w-[400px] flex-col justify-center px-4 py-10">
       <Link
-        href={next}
+        href="/"
         className="mb-8 text-[15px] text-[var(--color-text-muted)]"
       >
         ← Назад

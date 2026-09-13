@@ -4,6 +4,7 @@ import type { ListingDoc } from "@/lib/db/documents";
 import { findUsersByIds } from "@/lib/db/users";
 import { accentText } from "@/lib/listings/format";
 import type { ListingCardModel, ListingDetails, ListingRecord, ListingView } from "@/lib/listings/types";
+import { displayListingStatus } from "@/lib/listings/visibility";
 
 export function toDetails(listing: ListingRecord): ListingDetails {
   if (listing.type === "space") {
@@ -45,7 +46,12 @@ export function toCardModel(listing: ListingRecord): ListingCardModel {
     imageKey: listing.media[0]?.objectKey ?? null,
     specializationNames: names.slice(0, 2),
     extraCount: Math.max(0, names.length - 2),
-    status: listing.status,
+    status: displayListingStatus({
+      status: listing.status,
+      type: listing.type,
+      expiresAt: listing.expiresAt,
+      eventStartsAt: listing.eventDetails?.startsAt ?? null,
+    }),
     accent: accentText(details),
   };
 }
