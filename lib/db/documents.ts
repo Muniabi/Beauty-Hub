@@ -112,3 +112,13 @@ export type ListingDoc = {
   media: ListingMediaDoc[];
   specializationIds: string[];
 };
+
+export type AnalyticsEventDoc = {
+  _id: string;
+  name: string;
+  userId: string | null;
+  listingId: string | null;
+  listingType: ListingType | null;
+  target: string | null;
+  createdAt: Date;
+};

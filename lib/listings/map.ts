@@ -77,6 +77,7 @@ export function toListingView(
     author: {
       displayName: listing.author.displayName || "Автор",
       roleLabel: role ? ROLE_LABELS[role] : "",
+      hasPhone: listing.author.hasPhone,
     },
     rejectionReason: listing.rejectionReason,
     isExpired,
@@ -122,6 +123,7 @@ export async function hydrateListings(docs: ListingDoc[]): Promise<ListingRecord
         author: {
           role: author?.role ?? null,
           displayName: author?.profile.displayName ?? "Автор",
+          hasPhone: Boolean(author?.profile.contactPhone?.trim()),
         },
       } satisfies ListingRecord;
     }),

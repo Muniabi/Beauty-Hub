@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { archiveListingAction, submitListingAction } from "@/app/actions/listings";
+import { AuthorContactButtons } from "@/components/author-contact-buttons";
 import { AppShell } from "@/components/app-shell";
 import { Button } from "@/components/ui/button";
 import { getSessionUser } from "@/lib/auth/current-user";
@@ -16,12 +17,36 @@ import { formatEventWhen, formatPrice, mediaSrc } from "@/lib/listings/format";
 import { getListingForViewer } from "@/lib/listings/queries";
 import type { ListingView } from "@/lib/listings/types";
 
-function ContactCta({ listing, completed }: { listing: ListingView; completed: boolean }) {
+function ContactCta({
+  listing,
+  completed,
+  signedIn,
+}: {
+  listing: ListingView;
+  completed: boolean;
+  signedIn: boolean;
+}) {
   const next = `/listings/${listing.id}`;
   if (listing.isExpired) {
     return (
       <Button asChild variant="secondary" className="w-full">
         <Link href="/search">К поиску</Link>
+      </Button>
+    );
+  }
+  if (listing.isOwner) {
+    return (
+      <p className="text-[15px] text-[var(--color-text-muted)]">
+        Это ваше объявление. Отклики придут вам в Telegram.
+      </p>
+    );
+  }
+  if (signedIn && !completed) {
+    return (
+      <Button asChild className="w-full">
+        <Link href={`/onboarding/role?next=${encodeURIComponent(next)}`}>
+          Завершить профиль, чтобы написать
+        </Link>
       </Button>
     );
   }
@@ -35,9 +60,10 @@ function ContactCta({ listing, completed }: { listing: ListingView; completed: b
     );
   }
   return (
-    <Button type="button" className="w-full" disabled>
-      Написать в Telegram
-    </Button>
+    <AuthorContactButtons
+      listingId={listing.id}
+      hasPhone={listing.author.hasPhone}
+    />
   );
 }
 
@@ -213,21 +239,18 @@ export default async function ListingDetailsPage({
             ))}
           </div>
           <div className="mt-8 rounded-[10px] bg-[var(--color-surface-muted)] p-3">
+            <p className="text-[13px] text-[var(--color-text-muted)]">Автор объявления</p>
             <p className="font-semibold">{listing.author.displayName}</p>
             <p className="text-[13px] text-[var(--color-text-muted)]">
               {listing.author.roleLabel}
             </p>
           </div>
           <div className="mt-6">
-            {user && !user.profileCompleted && !expired ? (
-              <Button asChild className="w-full">
-                <Link href={`/onboarding/role?next=${encodeURIComponent(`/listings/${listing.id}`)}`}>
-                  Завершить профиль, чтобы написать
-                </Link>
-              </Button>
-            ) : (
-              <ContactCta listing={listing} completed={Boolean(user?.profileCompleted)} />
-            )}
+            <ContactCta
+              listing={listing}
+              completed={Boolean(user?.profileCompleted)}
+              signedIn={Boolean(user)}
+            />
           </div>
           {listing.isOwner ? (
             <div className="mt-6 flex flex-col gap-3">

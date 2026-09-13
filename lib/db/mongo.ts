@@ -1,6 +1,7 @@
 import { MongoClient, type Collection, type Db } from "mongodb";
 
 import type {
+  AnalyticsEventDoc,
   ListingDoc,
   LocationDoc,
   SpecializationDoc,
@@ -83,6 +84,12 @@ export async function specializationsCollection(): Promise<
 
 export async function listingsCollection(): Promise<Collection<ListingDoc>> {
   return (await getDb()).collection<ListingDoc>("listings");
+}
+
+export async function analyticsEventsCollection(): Promise<
+  Collection<AnalyticsEventDoc>
+> {
+  return (await getDb()).collection<AnalyticsEventDoc>("analytics_events");
 }
 
 export async function closeMongo(): Promise<void> {

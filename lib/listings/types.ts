@@ -59,6 +59,7 @@ export type ListingDetails = SpaceFields | EventFields | VacancyFields;
 export type ListingAuthorPublic = {
   displayName: string;
   roleLabel: string;
+  hasPhone: boolean;
 };
 
 export type ListingView = {
@@ -113,5 +114,6 @@ export type ListingRecord = {
   author: {
     role: UserRole | null;
     displayName: string;
+    hasPhone: boolean;
   };
 };
