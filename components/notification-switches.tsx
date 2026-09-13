@@ -24,7 +24,7 @@ export function NotificationSwitches({
   const defaults = { notifySpace, notifyEvent, notifyVacancy };
 
   return (
-    <div className="overflow-hidden rounded-[10px] border border-border bg-card">
+    <div className="overflow-hidden rounded-[16px] border border-border bg-card">
       {ROWS.map((row, index) => (
         <NotificationSwitchRow
           key={row.key}

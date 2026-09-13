@@ -8,15 +8,20 @@ import { cn } from "@/lib/utils";
 export function ListingCard({
   listing,
   compact = false,
+  className,
 }: {
   listing: ListingCardModel;
   compact?: boolean;
+  className?: string;
 }) {
   if (compact) {
     return (
       <Link
         href={`/listings/${listing.id}`}
-        className="flex gap-3 rounded-[14px] border border-border bg-card p-0 transition duration-200 hover:-translate-y-0.5 hover:border-[var(--color-border-strong)] hover:shadow-sm focus-visible:ring-2 focus-visible:ring-primary"
+        className={cn(
+          "flex gap-3 rounded-[14px] border border-border bg-card p-0 transition duration-200 hover:-translate-y-0.5 hover:border-[var(--color-border-strong)] hover:shadow-sm focus-visible:ring-2 focus-visible:ring-primary",
+          className,
+        )}
       >
         <div className="size-[76px] shrink-0 overflow-hidden rounded-[12px] bg-[var(--color-surface-muted)]">
           {listing.imageKey ? (
