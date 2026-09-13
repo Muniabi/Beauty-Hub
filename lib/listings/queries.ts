@@ -8,7 +8,7 @@ import {
 } from "@/lib/db/mongo";
 import { HOME_NEW_LIMIT, LISTING_PAGE_SIZE } from "@/lib/listings/constants";
 import { hydrateListings, toCardModel, toListingView } from "@/lib/listings/map";
-import type { ListingCardModel, ListingStatus, ListingType, ListingView } from "@/lib/listings/types";
+import type { ListingCardModel, ListingRecord, ListingStatus, ListingType, ListingView } from "@/lib/listings/types";
 import {
   isListingId,
   resolveListingAccess,
@@ -129,6 +129,32 @@ export async function listOwnListings(authorId: string): Promise<ListingCardMode
   } catch (error) {
     if (isDatabaseUnavailable(error)) {
       return [];
+    }
+    throw error;
+  }
+}
+
+export async function getOwnedListing(
+  listingId: string,
+  authorId: string,
+): Promise<ListingRecord | null> {
+  if (!isMongoConfigured() || !isListingId(listingId)) {
+    return null;
+  }
+
+  try {
+    const row = await (await listingsCollection()).findOne({
+      _id: listingId,
+      authorId,
+    });
+    if (!row) {
+      return null;
+    }
+    const [hydrated] = await hydrateListings([row]);
+    return hydrated;
+  } catch (error) {
+    if (isDatabaseUnavailable(error)) {
+      return null;
     }
     throw error;
   }

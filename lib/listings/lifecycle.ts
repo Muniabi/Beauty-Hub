@@ -40,3 +40,12 @@ export function assertClientCannotSetStatus(payload: { status?: unknown }) {
 export function canOwnerMutate(status: ListingStatus): boolean {
   return status !== "archived";
 }
+
+export function canOwnerEdit(status: ListingStatus): boolean {
+  return (
+    status === "draft" ||
+    status === "pending" ||
+    status === "rejected" ||
+    status === "published"
+  );
+}

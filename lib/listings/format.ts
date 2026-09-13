@@ -54,3 +54,19 @@ export function vacancyDirectionLabel(direction: VacancyDirection): string {
 export function mediaSrc(objectKey: string): string {
   return `/uploads/${encodeURIComponent(objectKey)}`;
 }
+
+export function toDatetimeLocalValue(value: Date | null | undefined): string {
+  if (!value) {
+    return "";
+  }
+  const formatted = new Intl.DateTimeFormat("sv-SE", {
+    timeZone: "Europe/Moscow",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  }).format(value);
+  return formatted.replace(" ", "T");
+}

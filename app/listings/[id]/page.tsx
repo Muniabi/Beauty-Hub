@@ -15,6 +15,7 @@ import {
 } from "@/lib/listings/constants";
 import { formatEventWhen, formatPrice, mediaSrc } from "@/lib/listings/format";
 import { getListingForViewer } from "@/lib/listings/queries";
+import { canOwnerEdit } from "@/lib/listings/lifecycle";
 import type { ListingView } from "@/lib/listings/types";
 
 function ContactCta({
@@ -254,6 +255,11 @@ export default async function ListingDetailsPage({
           </div>
           {listing.isOwner ? (
             <div className="mt-6 flex flex-col gap-3">
+              {canOwnerEdit(listing.status) ? (
+                <Button asChild variant="secondary" className="w-full">
+                  <Link href={`/listings/${listing.id}/edit`}>Редактировать</Link>
+                </Button>
+              ) : null}
               {listing.status === "draft" || listing.status === "rejected" ? (
                 <form action={submitListingAction}>
                   <input type="hidden" name="id" value={listing.id} />

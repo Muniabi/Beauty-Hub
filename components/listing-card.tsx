@@ -16,9 +16,9 @@ export function ListingCard({
     return (
       <Link
         href={`/listings/${listing.id}`}
-        className="flex gap-3 rounded-[10px] border border-border bg-card p-0 transition duration-200 hover:border-[var(--color-border-strong)] hover:shadow-sm focus-visible:ring-2 focus-visible:ring-primary"
+        className="flex gap-3 rounded-[14px] border border-border bg-card p-0 transition duration-200 hover:-translate-y-0.5 hover:border-[var(--color-border-strong)] hover:shadow-sm focus-visible:ring-2 focus-visible:ring-primary"
       >
-        <div className="size-[72px] shrink-0 overflow-hidden rounded-[8px] bg-[var(--color-surface-muted)]">
+        <div className="size-[76px] shrink-0 overflow-hidden rounded-[12px] bg-[var(--color-surface-muted)]">
           {listing.imageKey ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -44,34 +44,34 @@ export function ListingCard({
   return (
     <Link
       href={`/listings/${listing.id}`}
-      className="block overflow-hidden rounded-[10px] border border-border bg-card hover:border-[var(--color-border-strong)] focus-visible:ring-2 focus-visible:ring-primary"
+      className="group block overflow-hidden rounded-[16px] border border-border bg-card transition duration-200 hover:-translate-y-0.5 hover:border-[var(--color-border-strong)] hover:shadow-sm focus-visible:ring-2 focus-visible:ring-primary"
     >
-      <div className="relative aspect-[4/3] bg-[var(--color-surface-muted)]">
+      <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-surface-muted)]">
         {listing.imageKey ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={mediaSrc(listing.imageKey)}
             alt=""
-            className="size-full object-cover"
+            className="size-full object-cover transition duration-300 group-hover:scale-[1.03]"
           />
         ) : (
           <span className="absolute inset-0 flex items-center justify-center text-[12px] font-semibold tracking-wide">
             {LISTING_TYPE_LABELS[listing.type]}
           </span>
         )}
+        <span className="absolute top-3 left-3 rounded-[6px] bg-card/90 px-2 py-1 text-[12px] font-semibold tracking-wide backdrop-blur-sm">
+          {LISTING_TYPE_LABELS[listing.type]}
+        </span>
       </div>
       <div className="flex flex-col gap-2 p-3 md:p-4">
         <p className="truncate text-[13px] leading-[18px] text-[var(--color-text-muted)]">
-          <span className="rounded-[6px] bg-[var(--color-surface-muted)] px-1.5 py-0.5 text-[12px] font-semibold tracking-wide text-foreground">
-            {LISTING_TYPE_LABELS[listing.type]}
-          </span>
-          <span className="ml-2">{listing.districtName}</span>
+          {listing.districtName || "Район не указан"}
         </p>
         <h2 className="line-clamp-2 text-[16px] leading-[22px] font-semibold">
           {listing.title}
         </h2>
         {listing.accent ? (
-          <p className="text-[16px] leading-[22px] font-bold">{listing.accent}</p>
+          <p className="text-[16px] leading-[22px] font-bold text-primary">{listing.accent}</p>
         ) : null}
         <div className="flex gap-1.5 overflow-hidden">
           {listing.specializationNames.map((name) => (

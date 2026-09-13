@@ -105,11 +105,15 @@ export async function archiveListingAction(formData: FormData) {
 export async function loadMorePublicListings(input: {
   type: ListingType;
   q: string;
+  districtId?: string;
+  specializationId?: string;
   offset: number;
 }) {
   return searchPublicListings({
     type: input.type,
     q: input.q,
+    districtId: input.districtId || undefined,
+    specializationId: input.specializationId || undefined,
     offset: input.offset,
   });
 }

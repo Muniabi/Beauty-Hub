@@ -15,6 +15,7 @@ import { ROLE_LABELS } from "@/lib/auth/constants";
 import { getSessionUser } from "@/lib/auth/current-user";
 import { listDistricts, listSpecializations } from "@/lib/catalogs";
 import { listOwnListings } from "@/lib/listings/queries";
+import { canOwnerEdit } from "@/lib/listings/lifecycle";
 
 export default async function ProfilePage() {
   const user = await getSessionUser();
@@ -132,7 +133,17 @@ export default async function ProfilePage() {
             </p>
           ) : (
             ownListings.map((listing) => (
-              <ListingCard key={listing.id} listing={listing} compact />
+              <div key={listing.id} className="flex flex-col gap-2">
+                <ListingCard listing={listing} compact />
+                {canOwnerEdit(listing.status) ? (
+                  <Link
+                    href={`/listings/${listing.id}/edit`}
+                    className="pl-[84px] text-[13px] font-semibold text-primary"
+                  >
+                    Изменить
+                  </Link>
+                ) : null}
+              </div>
             ))
           )}
         </div>

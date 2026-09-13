@@ -24,7 +24,7 @@ export default async function CreateSpacePage() {
   ]);
   return (
     <AppShell current="/create">
-      <h1 className="text-[20px] font-semibold">Кабинет</h1>
+      <h1 className="font-display text-[32px] leading-[36px] font-semibold tracking-[-0.03em]">Кабинет</h1>
       <ListingCreateForm
         type="space"
         districts={districts}

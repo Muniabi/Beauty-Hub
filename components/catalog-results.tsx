@@ -11,11 +11,15 @@ import type { ListingType } from "@/lib/domain";
 export function CatalogResults({
   type,
   q,
+  districtId,
+  specializationId,
   initialItems,
   total,
 }: {
   type: ListingType;
   q: string;
+  districtId?: string;
+  specializationId?: string;
   initialItems: ListingCardModel[];
   total: number;
 }) {
@@ -38,6 +42,8 @@ export function CatalogResults({
                 const next = await loadMorePublicListings({
                   type,
                   q,
+                  districtId,
+                  specializationId,
                   offset: items.length,
                 });
                 setItems((current) => [...current, ...next.items]);

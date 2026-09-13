@@ -138,6 +138,7 @@
   --color-danger: var(--color-danger);
   --color-danger-bg: var(--color-danger-bg);
   --font-sans: var(--font-manrope), Inter, ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-cormorant), "Times New Roman", serif;
   --radius-sm: var(--radius-badge);
   --radius-md: var(--radius-control);
   --radius-lg: var(--radius-card);
@@ -163,7 +164,10 @@
 }
 
 body {
-  background: var(--color-bg);
+  background:
+    radial-gradient(1200px 420px at 12% -10%, #f6ebe3 0%, transparent 58%),
+    radial-gradient(900px 380px at 100% 0%, #dceee9 0%, transparent 52%),
+    var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-manrope), Inter, ui-sans-serif, system-ui, sans-serif;
 }

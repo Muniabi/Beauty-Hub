@@ -38,7 +38,7 @@ export default async function CreatePage() {
 
   return (
     <AppShell current="/create">
-      <h1 className="animate-fade-up text-[20px] leading-[26px] font-semibold tracking-[-0.01em]">
+      <h1 className="font-display animate-fade-up text-[36px] leading-[40px] font-semibold tracking-[-0.03em]">
         Что разместить
       </h1>
       <p
@@ -56,7 +56,7 @@ export default async function CreatePage() {
               href={item.href}
               style={{ animationDelay: `${120 + index * 70}ms` }}
               className={cn(
-                "group animate-fade-up flex min-h-20 items-center gap-3 rounded-[10px] border border-border bg-card px-4 py-3",
+                "group animate-fade-up flex min-h-20 items-center gap-3 rounded-[16px] border border-border bg-card px-4 py-3",
                 "transition duration-200 ease-out",
                 "hover:-translate-y-0.5 hover:border-[var(--color-border-strong)] hover:shadow-sm",
                 "active:scale-[0.99]",

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { assertClientCannotSetStatus, nextStatusAfterSave } from "./lifecycle";
+import { assertClientCannotSetStatus, canOwnerEdit, nextStatusAfterSave } from "./lifecycle";
 import { isValidForPending, listingWriteSchema } from "./schemas";
 import {
   assertOwner,
@@ -96,6 +96,13 @@ describe("status", () => {
         validForPending: true,
       }),
     ).toBe("pending");
+  });
+
+  it("lets the owner edit live and draft listings, but not archived", () => {
+    expect(canOwnerEdit("published")).toBe(true);
+    expect(canOwnerEdit("draft")).toBe(true);
+    expect(canOwnerEdit("archived")).toBe(false);
+    expect(canOwnerEdit("expired")).toBe(false);
   });
 
   it("rejects client status mass assignment", () => {

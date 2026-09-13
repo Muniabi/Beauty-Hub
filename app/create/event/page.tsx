@@ -15,7 +15,7 @@ export default async function CreateEventPage() {
   ]);
   return (
     <AppShell current="/create">
-      <h1 className="text-[20px] font-semibold">Мероприятие</h1>
+      <h1 className="font-display text-[32px] leading-[36px] font-semibold tracking-[-0.03em]">Мероприятие</h1>
       <ListingCreateForm
         type="event"
         districts={districts}

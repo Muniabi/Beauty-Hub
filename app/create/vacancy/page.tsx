@@ -15,7 +15,7 @@ export default async function CreateVacancyPage() {
   ]);
   return (
     <AppShell current="/create">
-      <h1 className="text-[20px] font-semibold">Вакансия</h1>
+      <h1 className="font-display text-[32px] leading-[36px] font-semibold tracking-[-0.03em]">Вакансия</h1>
       <ListingCreateForm
         type="vacancy"
         districts={districts}
