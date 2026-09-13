@@ -4,7 +4,7 @@ import { useEffect, useSyncExternalStore } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-import { TelegramLoginWidget } from "@/components/telegram-login-widget";
+import { OpenInTelegram } from "@/components/open-in-telegram";
 import { isTelegramMiniApp } from "@/components/telegram-webapp-script";
 
 function subscribe() {
@@ -46,17 +46,16 @@ export function LoginEntry({
 
   return (
     <>
-      <h1 className="text-[20px] leading-[26px] font-semibold">
-        Войти через Telegram
-      </h1>
-      <p className="mt-2 text-[13px] leading-[18px] text-[var(--color-text-muted)]">
-        Чтобы написать автору объявления
-      </p>
-      <div className="mt-8">
-        <TelegramLoginWidget next={next} initialError={initialError} />
-      </div>
+      <OpenInTelegram
+        next={next}
+        error={
+          initialError
+            ? "Не получилось войти автоматически. Откройте Beauty Hub через бота."
+            : undefined
+        }
+      />
       <p className="mt-8 text-[13px] leading-[18px] text-[var(--color-text-muted)]">
-        Входя, вы принимаете{" "}
+        Открывая приложение, вы принимаете{" "}
         <Link href="/legal/terms" className="text-primary">
           условия
         </Link>{" "}

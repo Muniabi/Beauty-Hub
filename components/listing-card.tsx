@@ -16,7 +16,7 @@ export function ListingCard({
     return (
       <Link
         href={`/listings/${listing.id}`}
-        className="flex gap-3 rounded-[10px] border border-border bg-card p-0 focus-visible:ring-2 focus-visible:ring-primary"
+        className="flex gap-3 rounded-[10px] border border-border bg-card p-0 transition duration-200 hover:border-[var(--color-border-strong)] hover:shadow-sm focus-visible:ring-2 focus-visible:ring-primary"
       >
         <div className="size-[72px] shrink-0 overflow-hidden rounded-[8px] bg-[var(--color-surface-muted)]">
           {listing.imageKey ? (

@@ -73,28 +73,3 @@ export function SelectField({
     </label>
   );
 }
-
-export function PreferenceToggle({
-  name,
-  label,
-  defaultChecked = false,
-}: {
-  name: string;
-  label: string;
-  defaultChecked?: boolean;
-}) {
-  return (
-    <label className="relative flex h-14 items-center justify-between rounded-[10px] border border-border bg-card px-4">
-      <span className="text-[15px] leading-[22px]">{label}</span>
-      <input
-        type="checkbox"
-        name={name}
-        defaultChecked={defaultChecked}
-        className="peer sr-only"
-      />
-      <span className="relative h-7 w-12 shrink-0 rounded-[10px] border border-border bg-card transition peer-checked:border-primary peer-checked:bg-primary peer-focus-visible:ring-2 peer-focus-visible:ring-primary/40">
-        <span className="absolute top-0.5 left-0.5 size-6 rounded-[8px] bg-[var(--color-surface-muted)] transition peer-checked:translate-x-5 peer-checked:bg-[var(--color-accent-text)]" />
-      </span>
-    </label>
-  );
-}

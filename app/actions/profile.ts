@@ -155,6 +155,23 @@ export async function updateNotificationPreferences(formData: FormData) {
   revalidatePath("/profile");
 }
 
+export async function setNotificationPreference(formData: FormData) {
+  const user = await requireSessionUser();
+  const key = String(formData.get("key") ?? "");
+  const enabled = String(formData.get("value") ?? "") === "1";
+  const next = {
+    notifySpace: user.notifySpace,
+    notifyEvent: user.notifyEvent,
+    notifyVacancy: user.notifyVacancy,
+  };
+
+  if (key === "notifySpace" || key === "notifyEvent" || key === "notifyVacancy") {
+    next[key] = enabled;
+    await updateUserNotifications(user.id, next);
+    revalidatePath("/profile");
+  }
+}
+
 export async function deleteOwnAccount() {
   const user = await requireSessionUser();
   await softDeleteUser(user.id);

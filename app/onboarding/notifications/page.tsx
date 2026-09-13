@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { saveOnboardingNotifications } from "@/app/actions/profile";
-import { PreferenceToggle } from "@/components/form-fields";
+import { PreferenceToggle } from "@/components/preference-toggle";
 import { Button } from "@/components/ui/button";
 import { getSessionUser } from "@/lib/auth/current-user";
 import { safeNext, withNext } from "@/lib/auth/safe-next";

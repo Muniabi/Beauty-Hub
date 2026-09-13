@@ -4,12 +4,12 @@ import { redirect } from "next/navigation";
 import {
   deleteOwnAccount,
   logoutAction,
-  updateNotificationPreferences,
   updateOwnProfile,
 } from "@/app/actions/profile";
 import { AppShell } from "@/components/app-shell";
 import { ListingCard } from "@/components/listing-card";
-import { PreferenceToggle, SelectField, TextField } from "@/components/form-fields";
+import { NotificationSwitches } from "@/components/notification-switches";
+import { SelectField, TextField } from "@/components/form-fields";
 import { Button } from "@/components/ui/button";
 import { ROLE_LABELS } from "@/lib/auth/constants";
 import { getSessionUser } from "@/lib/auth/current-user";
@@ -34,7 +34,7 @@ export default async function ProfilePage() {
     <AppShell current="/profile">
       <section className="max-w-xl">
         <div className="flex items-center gap-4">
-          <div className="flex size-14 items-center justify-center rounded-lg bg-[var(--color-surface-muted)] text-[20px] font-semibold">
+          <div className="flex size-14 items-center justify-center rounded-[8px] bg-[var(--color-accent-subtle)] text-[20px] font-semibold text-primary">
             {(user.displayName || "?").slice(0, 1)}
           </div>
           <div>
@@ -116,31 +116,18 @@ export default async function ProfilePage() {
         <p className="mt-1 text-[13px] leading-[18px] text-[var(--color-text-muted)]">
           Сообщения о новых объявлениях выбранного типа. По умолчанию выключено.
         </p>
-        <form action={updateNotificationPreferences} className="mt-4 flex flex-col gap-3">
-          <PreferenceToggle
-            name="notifySpace"
-            label="Кабинеты"
-            defaultChecked={user.notifySpace}
+        <div className="mt-4">
+          <NotificationSwitches
+            notifySpace={user.notifySpace}
+            notifyEvent={user.notifyEvent}
+            notifyVacancy={user.notifyVacancy}
           />
-          <PreferenceToggle
-            name="notifyEvent"
-            label="Мероприятия"
-            defaultChecked={user.notifyEvent}
-          />
-          <PreferenceToggle
-            name="notifyVacancy"
-            label="Вакансии"
-            defaultChecked={user.notifyVacancy}
-          />
-          <Button type="submit" variant="secondary">
-            Сохранить уведомления
-          </Button>
-        </form>
+        </div>
 
         <h2 className="mt-10 text-[16px] font-semibold">Мои объявления</h2>
         <div className="mt-3 flex flex-col gap-3">
           {ownListings.length === 0 ? (
-            <p className="text-[15px] text-[var(--color-text-muted)]">
+            <p className="mt-1 text-[13px] leading-[18px] text-[var(--color-text-muted)]">
               Пока нет объявлений
             </p>
           ) : (
