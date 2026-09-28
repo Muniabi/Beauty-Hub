@@ -29,9 +29,18 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/forbidden")) {
+    if (!authenticated) {
+      const url = request.nextUrl.clone();
+      url.pathname = "/login";
+      url.search = `?next=${encodeURIComponent(pathname + request.nextUrl.search)}`;
+      return NextResponse.redirect(url);
+    }
+  }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/profile/:path*", "/onboarding/:path*"],
+  matcher: ["/profile/:path*", "/onboarding/:path*", "/admin/:path*"],
 };

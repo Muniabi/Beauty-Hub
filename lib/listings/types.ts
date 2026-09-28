@@ -91,6 +91,8 @@ export type ListingRecord = {
   pricePeriod: PricePeriod | null;
   expiresAt: Date | null;
   publishedAt: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
   rejectionReason: string | null;
   media: { objectKey: string; sortOrder: number }[];
   specializationIds: string[];

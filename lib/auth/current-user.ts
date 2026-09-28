@@ -107,6 +107,14 @@ export async function requireSessionUser(): Promise<SessionUser> {
   return user;
 }
 
+export async function requireAdminUser(): Promise<SessionUser> {
+  const user = await requireSessionUser();
+  if (!user.isAdmin) {
+    throw new Error("FORBIDDEN");
+  }
+  return user;
+}
+
 export async function setSessionCookie(
   userId: string,
   options?: { thirdParty?: boolean },

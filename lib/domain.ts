@@ -13,3 +13,11 @@ export type PricePeriod = "month" | "shift" | "hour" | "event_ticket" | "other";
 export type WorkspaceKind = "cabinet" | "chair" | "coworking_slot" | "other";
 export type VacancyDirection = "looking_for_master" | "looking_for_job";
 export type EmploymentFormat = "rent" | "hire" | "percent" | "other";
+export type ReportReason =
+  | "fraud"
+  | "spam"
+  | "wrong_info"
+  | "prohibited"
+  | "outdated";
+export type ReportStatus = "open" | "resolved";
+export type ModerationActionType = "approve" | "reject" | "unpublish";

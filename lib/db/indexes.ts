@@ -54,6 +54,30 @@ export async function ensureIndexes(db: Db): Promise<void> {
         name: "listings_event_startsAt",
         partialFilterExpression: { type: "event" },
       },
+      {
+        key: { status: 1, createdAt: 1 },
+        name: "listings_moderation_queue",
+      },
+    ]),
+    db.collection("reports").createIndexes([
+      {
+        key: { status: 1, createdAt: 1 },
+        name: "reports_queue",
+      },
+      {
+        key: { listingId: 1, status: 1 },
+        name: "reports_by_listing",
+      },
+      {
+        key: { reporterId: 1, createdAt: -1 },
+        name: "reports_by_reporter",
+      },
+    ]),
+    db.collection("moderation_actions").createIndexes([
+      {
+        key: { listingId: 1, createdAt: -1 },
+        name: "moderation_actions_listing",
+      },
     ]),
   ]);
 }

@@ -113,6 +113,8 @@ export async function hydrateListings(docs: ListingDoc[]): Promise<ListingRecord
         pricePeriod: doc.pricePeriod,
         expiresAt: doc.expiresAt,
         publishedAt: doc.publishedAt,
+        createdAt: doc.createdAt,
+        updatedAt: doc.updatedAt,
         rejectionReason: doc.rejectionReason,
         media: [...doc.media].sort((a, b) => a.sortOrder - b.sortOrder),
         specializationIds: doc.specializationIds,

@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:db": "vitest run lib/db/mongo.test.ts",
     "db:seed": "tsx --env-file=.env scripts/seed.ts",
+    "db:seed:moderation": "tsx --env-file=.env scripts/seed-demo-moderation.ts",
     "bot:setup": "tsx --env-file=.env scripts/telegram-setup.ts",
     "bot:status": "tsx --env-file=.env scripts/telegram-status.ts"
   },
