@@ -3,7 +3,10 @@ import type {
   ListingStatus,
   ListingType,
   LocationLevel,
+  ModerationActionType,
   PricePeriod,
+  ReportReason,
+  ReportStatus,
   UserRole,
   UserStatus,
   VacancyDirection,
@@ -120,5 +123,25 @@ export type AnalyticsEventDoc = {
   listingId: string | null;
   listingType: ListingType | null;
   target: string | null;
+  createdAt: Date;
+};
+
+export type ReportDoc = {
+  _id: string;
+  reporterId: string;
+  listingId: string;
+  reason: ReportReason;
+  comment: string | null;
+  status: ReportStatus;
+  createdAt: Date;
+  resolvedAt: Date | null;
+};
+
+export type ModerationActionDoc = {
+  _id: string;
+  listingId: string;
+  actorId: string;
+  action: ModerationActionType;
+  reason: string | null;
   createdAt: Date;
 };

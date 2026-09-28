@@ -4,6 +4,8 @@ import type {
   AnalyticsEventDoc,
   ListingDoc,
   LocationDoc,
+  ModerationActionDoc,
+  ReportDoc,
   SpecializationDoc,
   UserDoc,
 } from "@/lib/db/documents";
@@ -90,6 +92,16 @@ export async function analyticsEventsCollection(): Promise<
   Collection<AnalyticsEventDoc>
 > {
   return (await getDb()).collection<AnalyticsEventDoc>("analytics_events");
+}
+
+export async function reportsCollection(): Promise<Collection<ReportDoc>> {
+  return (await getDb()).collection<ReportDoc>("reports");
+}
+
+export async function moderationActionsCollection(): Promise<
+  Collection<ModerationActionDoc>
+> {
+  return (await getDb()).collection<ModerationActionDoc>("moderation_actions");
 }
 
 export async function closeMongo(): Promise<void> {
